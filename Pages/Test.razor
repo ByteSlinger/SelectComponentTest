@@ -1,0 +1,32 @@
+﻿@page "/test"
+@page "/test/{param}"
+
+<h3>Select Component Test</h3>
+
+<div class="border col-2">
+    <h4>Parent</h4>
+    <hr />
+    <div class="form-group">
+        <label for="parentValue">Parent Value</label>
+        <input id="parentValue" type="text" class="form-control" @bind="@param" />
+    </div>
+</div>
+<div class="col-3">&nbsp</div>
+<div class="border col-2">
+    <h4>Component</h4>
+    <hr />
+    <SelectComponent @bind-Item="@param" />
+</div>
+<hr />
+<ul>Links
+    <li><a href="/test/item 1">item 1</a></li>
+    <li><a href="/test/ITEM 2">ITEM 2</a></li>
+    <li><a href="/test/iTeM 3">iTeM 3</a></li>
+    <li><a href="/test/ItEm 4">ItEm 4</a></li>
+    <li><a href="/test/item 99">item 99</a></li>
+</ul>
+@code
+{
+    [Parameter]
+    public string param { get; set; }
+}

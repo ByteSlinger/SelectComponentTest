@@ -1,0 +1,57 @@
+﻿<!-- Select Component -->
+<div class="form-group">
+    <label for="Item" class="form-check-label">Item</label>
+    @if (list == null)
+    {
+        <input id="Item" class="form-control" @bind="@Item" />
+    }
+    else
+    {
+        <select id="Item" class="form-control" @bind="@Item">
+            @foreach (var l in list)
+            {
+                <option value="@l">@l</option>
+            }
+        </select>
+    }
+</div>
+@code {
+    public IEnumerable<string> list = new List<string>()
+{
+        "Item 1",
+        "Item 2",
+        "Item 3",
+        "Item 4",
+        "Item 5"
+    };
+
+    private string item { get; set; }
+
+    [Parameter]
+    public string Item
+    {
+        get { return item; }
+        set
+        {
+            if (item != value)
+            {
+                foreach (var l in list)
+                {
+                    if (value != null && String.Equals(l, value, StringComparison.OrdinalIgnoreCase))
+                    {
+                        item = l;   // match exact case to my list
+
+                        // update the parent if there is one
+                        if (ItemChanged.HasDelegate)
+                        {
+                            ItemChanged.InvokeAsync(item);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> ItemChanged { get; set; }
+}
