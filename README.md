@@ -7,4 +7,4 @@ I quickly copied an input text field example component and replaced it with a se
 
 The trick was to have a custom setter on the bind string variable that calls InvokeAsync() on the xxxxChanged class.  Look at the SelectComponent.pages source to see the code:
 
-  https://github.com/ByteSlinger/SelectComponentTest/blob/master/Pages/SelectComponent.razor
+  ../Pages/SelectComponent.razor
