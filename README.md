@@ -7,4 +7,8 @@ I quickly copied an input text field example component and replaced it with a se
 
 The trick was to have a custom setter on the bind string variable that calls InvokeAsync() on the xxxxChanged class.  Look at the SelectComponent.razor source to see the code:
 
-  [Pages/SelectComponent.razor](Pages/SelectComponent.razor)
+   [Pages/SelectComponent.razor](Pages/SelectComponent.razor)
+    
+And the parent is here:
+
+   [Pages/Test.razor](Pages/Test.razor)
