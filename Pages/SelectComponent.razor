@@ -7,11 +7,11 @@
     <label for="Item" class="form-check-label">Item</label>
     @if (list == null)
     {
-        <input id="Item" class="form-control" @bind="@Item" />
+        <input id="Item" class="form-control-sm" @bind="@Item" />
     }
     else
     {
-        <select id="Item" class="form-control" @bind="@Item">
+        <select id="Item" class="form-control-sm" @bind="@Item">
             @foreach (var l in list)
             {
                 <option value="@l">@l</option>
@@ -41,21 +41,28 @@
         {
             if (item != value)  // skip if it's the same string
             {
-                // validate the new item value against my list
-                foreach (var l in list)
+                if (list == null || list.Count() == 0)
                 {
-                    if (value != null && String.Equals(l, value, StringComparison.OrdinalIgnoreCase))
-                    {
-                        item = l;   // match exact case to my list so "selected" option works properly
-                        message = null;
-                    }
+                    item = value;
                 }
-
-                // if there's no match, clear the item
-                if (!String.Equals(item, value, StringComparison.OrdinalIgnoreCase))
+                else
                 {
-                    item = null;
-                    message = "Invalid Item";
+                    // validate the new item value against my list
+                    foreach (var l in list)
+                    {
+                        if (value != null && String.Equals(l, value, StringComparison.OrdinalIgnoreCase))
+                        {
+                            item = l;   // match exact case to my list so "selected" option works properly
+                            message = null;
+                        }
+                    }
+
+                    // if there's no match, clear the item
+                    if (!String.Equals(item, value, StringComparison.OrdinalIgnoreCase))
+                    {
+                        item = null;
+                        message = "Invalid Item";
+                    }
                 }
 
                 // make sure there is a parent
